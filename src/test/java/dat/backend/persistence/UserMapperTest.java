@@ -19,8 +19,8 @@ class UserMapperTest
     // TODO: Change mysql login credentials if needed below
 
     private final static String USER = "root";
-    private final static String PASSWORD = "root";
-    private final static String URL = "jdbc:mysql://localhost:3306/startcode_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
+    private final static String PASSWORD = "Salar0108";
+    private final static String URL = "jdbc:mysql://localhost:3306/cupcake_test?serverTimezone=CET&allowPublicKeyRetrieval=true&useSSL=false";
 
     private static ConnectionPool connectionPool;
 
@@ -34,10 +34,10 @@ class UserMapperTest
             try (Statement stmt = testConnection.createStatement())
             {
                 // Create test database - if not exist
-                stmt.execute("CREATE DATABASE  IF NOT EXISTS startcode_test;");
+                stmt.execute("CREATE DATABASE  IF NOT EXISTS cupcake_test;");
 
                 // TODO: Create user table. Add your own tables here
-                stmt.execute("CREATE TABLE IF NOT EXISTS startcode_test.user LIKE startcode.user;");
+                stmt.execute("CREATE TABLE IF NOT EXISTS cupcake_test.user LIKE cupcake.user;");
             }
         }
         catch (SQLException throwables)
@@ -103,7 +103,7 @@ class UserMapperTest
     @Test
     void createUser() throws DatabaseException
     {
-        User newUser = UserFacade.createUser("jill", "1234", "user", connectionPool);
+        User newUser = UserFacade.createUser("jill", "jill", "1234",  connectionPool);
         User logInUser = UserFacade.login("jill", "1234", connectionPool);
         User expectedUser = new User("jill", "1234", "user");
         assertEquals(expectedUser, newUser);
