@@ -23,7 +23,19 @@
         <c:if test="${sessionScope.user == null}">
             <p>You are not logged in yet. You can do it here: <a
                     href="../login.jsp">Login</a></p>
+
         </c:if>
+        <form action="itemPicker" method="post">
+            <label for="topping">Choose topping: </label>
+            <input type="text" id="topping" name="topping-type"/>
+            <label for="bottom">Chose bottom: </label>
+            <input type="text" id="bottom" name="bottom-type"/>
+            <input type="submit"  value="Select"/>
+
+            <p>${sessionScope.topping-type} dsada</p>
+        </form>
+
+        <h1> ARGHH ${sessionScope.topping-type}</h1>
 
     </jsp:body>
 

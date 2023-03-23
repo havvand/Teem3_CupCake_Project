@@ -3,6 +3,7 @@ package dat.backend.control;
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.CupCakePickerFacade;
 import dat.backend.model.persistence.UserFacade;
 import dat.backend.model.persistence.ConnectionPool;
 
@@ -13,37 +14,37 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.sql.SQLException;
 
-@WebServlet(name = "login", urlPatterns = {"/login"} )
-public class Login extends HttpServlet
+@WebServlet(name = "itemPicker", urlPatterns = {"/itemPicker"} )
+public class ItemPicker extends HttpServlet
 {
-    private ConnectionPool connectionPool;
-
-    @Override
-    public void init() throws ServletException
-    {
-        this.connectionPool = ApplicationStart.getConnectionPool();
-    }
+    private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         // You shouldn't end up here with a GET-request, thus you get sent back to frontpage
-        response.sendRedirect("index.jsp");
+        //response.sendRedirect("index.jsp");
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
-        session.setAttribute("user", null); // invalidating user object in session scope
-        String username = request.getParameter("username");
-        String password = request.getParameter("password");
+        //session.setAttribute("user", null); // invalidating user object in session scope
+        String userTopping = request.getParameter("topping-type");
+        String userBottom = request.getParameter("bottom-type");
 
         try
         {
-            User user = UserFacade.login(username, password, connectionPool);
-            session = request.getSession();
-            session.setAttribute("user", user); // adding user object to session scope
+
+            String top = CupCakePickerFacade.PickTop(userTopping, connectionPool);
+            System.out.println(top + " SAY WHAT");
+            String bottom = CupCakePickerFacade.PickBottom(userBottom, connectionPool);
+
+            session.setAttribute("topping-type", top);
+            session.setAttribute("bottom-type", bottom);
+
             request.getRequestDispatcher("WEB-INF/customer.jsp").forward(request, response);
         }
         catch (DatabaseException e)
