@@ -76,7 +76,7 @@ class UserMapper
 
     static ArrayList<User> showUsers(ConnectionPool connectionPool) {
         ArrayList<User> allUsers = new ArrayList<>();
-        String sql = "SELECT * FROM userdata";
+        String sql = "SELECT * FROM userhistory";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ResultSet rs = ps.executeQuery();
