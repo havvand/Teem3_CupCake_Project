@@ -21,6 +21,9 @@
             <form action="ShowHistory" method="post">
                 <input type="submit"  value="Show History"/>
             </form>
+            <form action="ShowUsers" method="post">
+            <input type="submit"  value="Show Users"/>
+            </form>
         </c:if>
 
         <c:if test="${sessionScope.user == null}">

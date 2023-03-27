@@ -75,6 +75,7 @@ class UserMapper
     }
 
     static ArrayList<User> showUsers(ConnectionPool connectionPool) {
+        User user = null;
         ArrayList<User> allUsers = new ArrayList<>();
         String sql = "SELECT * FROM userhistory";
         try (Connection connection = connectionPool.getConnection()) {
@@ -83,7 +84,10 @@ class UserMapper
                 while (rs.next()) {
                     int userId = rs.getInt("userId");
                     String username = rs.getString("username");
-                    String name = rs.getString("name");
+                    int balance = rs.getInt("balance");
+                    int orderId = rs.getInt("orderId");
+                    user = new User(userId, username, balance, orderId);
+                    allUsers.add(user);
 
                 }
 

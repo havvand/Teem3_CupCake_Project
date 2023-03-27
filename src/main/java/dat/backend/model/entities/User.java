@@ -4,6 +4,9 @@ import java.util.Objects;
 
 public class User
 {
+    private int userId;
+    private int balance;
+    private int orderId;
     private String username;
     private String password;
     private String role;
@@ -13,6 +16,13 @@ public class User
         this.username = username;
         this.password = password;
         this.role = role;
+    }
+
+    public User(int userId, String username, int balance, int orderId) {
+        this.userId = userId;
+        this.username = username;
+        this.balance = balance;
+        this.orderId = orderId;
     }
 
     public String getUsername()
@@ -45,6 +55,30 @@ public class User
         this.role = role;
     }
 
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getBalance() {
+        return balance;
+    }
+
+    public void setBalance(int balance) {
+        this.balance = balance;
+    }
+
+    public int getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
     @Override
     public boolean equals(Object o)
     {
@@ -62,12 +96,14 @@ public class User
     }
 
     @Override
-    public String toString()
-    {
+    public String toString() {
         return "User{" +
-                "brugerNavn='" + username + '\'' +
-                ", kodeord='" + password + '\'' +
-                ", rolle='" + role + '\'' +
+                "userId=" + userId +
+                ", balance=" + balance +
+                ", orderId=" + orderId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
                 '}';
     }
 }
