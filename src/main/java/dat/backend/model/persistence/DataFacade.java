@@ -8,7 +8,7 @@ public class DataFacade {
     public static ArrayList<Order> showOrderHistory(ConnectionPool connectionPool) {
         return DataMapper.showOrderHistory(connectionPool);
     }
-    public static ArrayList<Order> deleteOrderHistory(int orderId, int price, int userId, String name, ConnectionPool connectionPool) {
-        return DataMapper.deleteOrderHistory(orderId, price, userId, name, connectionPool);
+    public static boolean deleteOrderHistory(int orderId, ConnectionPool connectionPool) {
+        return DataMapper.deleteOrderHistory(orderId, connectionPool);
     }
 }

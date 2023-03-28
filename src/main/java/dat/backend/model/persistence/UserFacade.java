@@ -20,4 +20,9 @@ public class UserFacade
     public static ArrayList<User> showUsers(ConnectionPool connectionPool) {
         return UserMapper.showUsers(connectionPool);
     }
+
+    public static void insertMoney(int userId, int balance, ConnectionPool connectionPool) throws DatabaseException {
+        UserMapper.insertMoney(userId, balance, connectionPool);
+    }
+
 }

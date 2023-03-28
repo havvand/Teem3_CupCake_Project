@@ -37,14 +37,17 @@ public class DataMapper {
         return orderHistory;
     }
 
-    static ArrayList<Order> deleteOrderHistory(int orderId, int price, int userId, String name, ConnectionPool connectionPool) {
-        Order order = new Order(orderId, price, userId, name);
-        ArrayList<Order> orderHistory = showOrderHistory(connectionPool);
-        orderHistory.remove(order);
-        String sql = "DELETE FROM orderhistory WHERE 'orderId' = orderId";
+    static boolean deleteOrderHistory(int orderId, ConnectionPool connectionPool) {
+        boolean result = false;
+        String sql = "DELETE FROM orderdata WHERE orderId = ?";
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
-                ResultSet rs = ps.executeQuery();
+                ps.setInt(1, orderId);
+                int rowsAffected = ps.executeUpdate();
+                if (rowsAffected == 1)
+                {
+                    result = true;
+                }
 
             } catch (SQLException ex) {
                 ex.printStackTrace();
@@ -52,6 +55,7 @@ public class DataMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return orderHistory;
+        orderHistory.removeIf(o -> o.getOrderId() == orderId);
+        return result;
     }
 }

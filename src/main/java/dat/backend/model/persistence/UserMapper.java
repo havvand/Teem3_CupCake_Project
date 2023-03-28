@@ -100,5 +100,28 @@ class UserMapper
         return allUsers;
     }
 
+    static boolean insertMoney(int userId, int balance, ConnectionPool connectionPool)  {
+        Logger.getLogger("web").log(Level.INFO, "");
+        boolean result = false;
+        String sql = "UPDATE userdata SET balance = (?+balance) WHERE userId = ?";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setInt(1, balance);
+                ps.setInt(2, userId);
+                int rowsaffected = ps.executeUpdate();
+                if (rowsaffected == 1) {
+                    result = true;
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        catch (SQLException exception) {
+           exception.printStackTrace();
+        }
+        return result;
+    }
+
 
 }

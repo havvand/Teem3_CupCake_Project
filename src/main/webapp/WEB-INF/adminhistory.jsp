@@ -13,6 +13,11 @@
     </jsp:attribute>
 
     <jsp:body>
+        <form action="RemoveOrder" method="post">
+            <label for="remove">Enter OrderID</label>
+            <input type="text" id="remove" name="remove"/>
+            <input type="submit" value="Delete"></input>
+        </form>
 
         <c:forEach  var="order" items="${sessionScope.history}">
             <table class="table table-striped table-hover">
@@ -32,7 +37,11 @@
                 <td class="align-middle">${order.userId}</td>
                 <td class="align-middle">${order.name}</td>
                 <td class="text-center">
-                    <button name="remove" class="btn btn-outline-danger" value="${order}" formaction="ShowHistory">Remove</button>
+                    <form action="RemoveOrder" method="post">
+
+                            <input type="submit" value="${order.orderId}">Delete</input>
+
+                    </form>
                 </td>
             </tr>
             </tbody>
