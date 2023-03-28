@@ -17,12 +17,16 @@ public class UserFacade
         return UserMapper.createUser(username, name, password, connectionPool);
     }
 
+    public static ArrayList<User> showUserHistory(ConnectionPool connectionPool) {
+        return UserMapper.showUserHistory(connectionPool);
+    }
+
     public static ArrayList<User> showUsers(ConnectionPool connectionPool) {
         return UserMapper.showUsers(connectionPool);
     }
 
-    public static void insertMoney(int userId, int balance, ConnectionPool connectionPool) throws DatabaseException {
-        UserMapper.insertMoney(userId, balance, connectionPool);
+    public static boolean insertMoney(int userId, int balance, ConnectionPool connectionPool) throws DatabaseException {
+        return UserMapper.insertMoney(userId, balance, connectionPool);
     }
 
 }

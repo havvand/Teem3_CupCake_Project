@@ -74,7 +74,7 @@ class UserMapper
         return user;
     }
 
-    static ArrayList<User> showUsers(ConnectionPool connectionPool) {
+    static ArrayList<User> showUserHistory(ConnectionPool connectionPool) {
         User user = null;
         ArrayList<User> allUsers = new ArrayList<>();
         String sql = "SELECT * FROM userhistory";
@@ -99,6 +99,31 @@ class UserMapper
         }
         return allUsers;
     }
+    static ArrayList<User> showUsers(ConnectionPool connectionPool) {
+        User user = null;
+        ArrayList<User> allUsers = new ArrayList<>();
+        String sql = "SELECT userId, username, balance FROM userdata";
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    int userId = rs.getInt("userId");
+                    String username = rs.getString("username");
+                    int balance = rs.getInt("balance");
+                    user = new User(userId, balance, username);
+                    allUsers.add(user);
+
+                }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return allUsers;
+    }
+
 
     static boolean insertMoney(int userId, int balance, ConnectionPool connectionPool)  {
         Logger.getLogger("web").log(Level.INFO, "");

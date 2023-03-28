@@ -29,7 +29,7 @@ public class AddBalance extends HttpServlet {
         session.setAttribute("users", allUsers);
         try {
             UserFacade.insertMoney(userId, balance, connectionPool);
-            request.getRequestDispatcher("WEB-INF/adminshowusers.jsp").forward(request, response);
+            request.getRequestDispatcher("WEB-INF/adminallusers.jsp").forward(request, response);
         } catch (DatabaseException e) {
             request.setAttribute("errormessage", e.getMessage());
             request.getRequestDispatcher("error.jsp").forward(request, response);

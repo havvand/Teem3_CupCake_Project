@@ -22,7 +22,10 @@
                 <input type="submit"  value="Show History"/>
             </form>
             <form action="ShowUsers" method="post">
-            <input type="submit"  value="Show Users"/>
+            <input type="submit"  value="Show User History"/>
+            </form>
+            <form action="AllUsers" method="post">
+                <input type="submit"  value="Show All Users"/>
             </form>
         </c:if>
 

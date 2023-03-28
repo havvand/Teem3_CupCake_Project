@@ -11,10 +11,10 @@ import javax.servlet.annotation.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet(name = "ShowUsers", value = "/ShowUsers")
-public class ShowUsers extends HttpServlet {
+@WebServlet(name = "AllUsers", value = "/AllUsers")
+public class AllUsers extends HttpServlet {
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
-    private ArrayList<User> allUsers = UserFacade.showUserHistory(connectionPool);
+    private ArrayList<User> allUsers = UserFacade.showUsers(connectionPool);
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
@@ -24,7 +24,7 @@ public class ShowUsers extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("users", allUsers);
-        request.getRequestDispatcher("WEB-INF/adminshowusers.jsp").forward(request, response);
+        request.getRequestDispatcher("WEB-INF/adminallusers.jsp").forward(request, response);
 
     }
 }

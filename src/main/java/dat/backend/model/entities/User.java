@@ -25,6 +25,12 @@ public class User
         this.orderId = orderId;
     }
 
+    public User(int userId, int balance, String username) {
+        this.userId = userId;
+        this.balance = balance;
+        this.username = username;
+    }
+
     public String getUsername()
     {
         return username;
