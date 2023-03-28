@@ -1,9 +1,20 @@
 package dat.backend.model.entities;
 
+import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.CupCakePickerFacade;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ShoppingCart
 {
+    ConnectionPool connectionPool;
+    Map<String, CupCakes> CupCakesTop;
+    Map<String, CupCakes> CupCakesBottom;
+
     private String id = "";
     private static ArrayList<String> orders = new ArrayList<>();
 
@@ -24,9 +35,23 @@ public class ShoppingCart
         return orders;
     }
 
-    public int getPrice(String id)
+    public int getPrice(String idTop, String idBottom, int quantity)
     {
-        return 0;
+        this.connectionPool = ApplicationStart.getConnectionPool();
+        try {
+            CupCakesTop = CupCakePickerFacade.PickTop(connectionPool);
+            CupCakesBottom = CupCakePickerFacade.PickBottom(connectionPool);
+        } catch (DatabaseException | SQLException e) {
+            e.printStackTrace();
+        }
+        int total = CupCakesTop.get(idTop).getPrice() + CupCakesBottom.get(idBottom).getPrice();
+
+        if(quantity > 1)
+        {
+            total *= quantity;
+        }
+
+        return total;
     }
 
     public void printOrderList()

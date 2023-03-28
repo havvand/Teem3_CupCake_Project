@@ -13,21 +13,35 @@
     </jsp:attribute>
 
     <jsp:body>
-        <div id class="text-center">
+        <br>
+        <div id class="container-fluid justify-content-center">
         <form action="topAndBottom" method="post">
-            <div id="select1" class="product-options " data-toggle="buttons">
+            <div id="select1" class="product-options row justify-content-center" data-toggle="buttons">
                 <h1> Choose topping </h1>
                 <c:forEach var="top" items="${applicationScope.mapOne}">
-                    <label class="btn btn-default"><input type="radio" name="option1" value=" ${top.key}"> ${top.key} </label>
+                    <div class="card text-center m-2" style="width: 14rem; background-color: seashell">
+                        <div class="card-body">
+                            <h5 class="card-title">${top.key}</h5>
+                            <p class="card-text"> <p>Price ${top.value.price} $</p></p>
+                            <label class="btn btn-default"><input type="radio" name="option1" value="${top.key}"><br>${top.key}</label>
+                        </div>
+                    </div>
+
                 </c:forEach>
             </div>
 
             <br>
 
-            <div id="select2" class="product-options " data-toggle="buttons">
+            <div id="select2" class="product-options row justify-content-center" data-toggle="buttons">
                 <h1> Choose bottom </h1>
                 <c:forEach var="bottom" items="${applicationScope.mapTwo}">
-                    <label class="btn btn-default"><input type="radio" name="option2" value=" ${bottom.key}"> ${bottom.key} </label>
+                   <div class="card text-center bg-light m-2" style="width: 14rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${bottom.key}</h5>
+                            <p class="card-text"> <p>Price ${bottom.value.price} $</p></p>
+                            <label class="btn btn-default"><input type="radio" name="option2" value="${bottom.key}"><br>${bottom.key}</label>
+                        </div>
+                    </div>
                 </c:forEach>
             </div>
             <br>

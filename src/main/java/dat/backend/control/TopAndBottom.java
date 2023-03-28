@@ -42,11 +42,10 @@ public class TopAndBottom extends HttpServlet {
         String addTopping = request.getParameter("option1");
         String addBottom = request.getParameter("option2");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
-        System.out.println(addTopping + " ------- " + addBottom);
 
         cart.addOrder(addTopping, quantity);
         cart.addOrder(addBottom, quantity);
-        cart.printOrderList();
+        System.out.println(cart.getPrice(addTopping, addBottom, quantity));
         request.getRequestDispatcher("WEB-INF/customer.jsp").forward(request,response);
 
         // Add functionality to add toppings to customer orders.
