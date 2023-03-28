@@ -27,13 +27,13 @@ public class AddBalance extends HttpServlet {
         int balance = Integer.parseInt(request.getParameter("add"));
         HttpSession session = request.getSession();
         session.setAttribute("users", allUsers);
-        try {
-            UserFacade.insertMoney(userId, balance, connectionPool);
-            request.getRequestDispatcher("WEB-INF/adminallusers.jsp").forward(request, response);
-        } catch (DatabaseException e) {
-            request.setAttribute("errormessage", e.getMessage());
-            request.getRequestDispatcher("error.jsp").forward(request, response);
-        }
+        UserFacade.insertMoney(userId, balance, connectionPool);
+        for (User u : allUsers) {
+            if (userId == u.getUserId()) {
+                u.setBalance(u.getBalance()+balance);
+            }
 
+        }
+        request.getRequestDispatcher("WEB-INF/adminallusers.jsp").forward(request, response);
     }
 }

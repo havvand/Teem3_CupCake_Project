@@ -25,7 +25,7 @@ public class UserFacade
         return UserMapper.showUsers(connectionPool);
     }
 
-    public static boolean insertMoney(int userId, int balance, ConnectionPool connectionPool) throws DatabaseException {
+    public static boolean insertMoney(int userId, int balance, ConnectionPool connectionPool) {
         return UserMapper.insertMoney(userId, balance, connectionPool);
     }
 
