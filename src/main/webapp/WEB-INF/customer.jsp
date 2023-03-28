@@ -5,7 +5,7 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the logged in area
+         Build your cupcakes!
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -13,6 +13,28 @@
     </jsp:attribute>
 
     <jsp:body>
+        <div id class="text-center">
+        <form action="topAndBottom" method="post">
+            <div id="select1" class="product-options " data-toggle="buttons">
+                <h1> Choose topping </h1>
+                <c:forEach var="top" items="${applicationScope.mapOne}">
+                    <label class="btn btn-default"><input type="radio" name="option1" value=" ${top.key}"> ${top.key} </label>
+                </c:forEach>
+            </div>
+
+            <br>
+
+            <div id="select2" class="product-options " data-toggle="buttons">
+                <h1> Choose bottom </h1>
+                <c:forEach var="bottom" items="${applicationScope.mapTwo}">
+                    <label class="btn btn-default"><input type="radio" name="option2" value=" ${bottom.key}"> ${bottom.key} </label>
+                </c:forEach>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-primary">Add</button>
+
+        </form>
+        </div>
 
         <p>You should be logged in now</p>
 
@@ -23,19 +45,12 @@
         <c:if test="${sessionScope.user == null}">
             <p>You are not logged in yet. You can do it here: <a
                     href="../login.jsp">Login</a></p>
-
         </c:if>
-        <form action="itemPicker" method="post">
-            <label for="topping">Choose topping: </label>
-            <input type="text" id="topping" name="topping-type"/>
-            <label for="bottom">Chose bottom: </label>
-            <input type="text" id="bottom" name="bottom-type"/>
-            <input type="submit"  value="Select"/>
 
-            <p>${sessionScope.topping-type} dsada</p>
-        </form>
+        <h1> ARGHH ${sessionScope.toppingType}</h1>
 
-        <h1> ARGHH ${sessionScope.topping-type}</h1>
+
+
 
     </jsp:body>
 

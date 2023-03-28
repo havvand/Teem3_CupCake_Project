@@ -20,13 +20,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
 
-@WebServlet(name = "itemPicker", urlPatterns = {"/itemPicker"} )
-public class ItemPicker extends HttpServlet
+@WebServlet(name = "customerHomePage", urlPatterns = {"/customerHomePage"} )
+public class CustomerHomepage extends HttpServlet
 {
     private ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
     Map<String, CupCakes> CupCakesTop;
 
-       public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
     {
 
         response.setContentType("text/html");
@@ -35,10 +35,13 @@ public class ItemPicker extends HttpServlet
         //response.sendRedirect("index.jsp");
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-    {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession();
         response.setContentType("text/html");
+
+        request.getRequestDispatcher("WEB-INF/customer.jsp").forward(request,response);
+        System.out.println("LOLOLO");
+
         //session.setAttribute("user", null); // invalidating user object in session scope
         //String userTopping = request.getParameter("toppingType");
     }

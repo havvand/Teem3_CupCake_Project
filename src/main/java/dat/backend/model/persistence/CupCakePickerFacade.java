@@ -1,16 +1,19 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.entities.CupCakes;
 import dat.backend.model.exceptions.DatabaseException;
+
+import java.sql.SQLException;
+import java.util.Map;
 
 public class CupCakePickerFacade
 {
-    public static String PickTop(String topping, ConnectionPool connectionPool) throws DatabaseException
-    {
-        return CupCakePickerMapper.PickTop(topping, connectionPool);
+    public static Map<String, CupCakes> PickTop(ConnectionPool connectionPool) throws SQLException {
+        return CupCakePickerMapper.PickTop(connectionPool);
     }
 
-    public static String PickBottom(String bottom, ConnectionPool connectionPool) throws DatabaseException
+    public static Map<String, CupCakes> PickBottom(ConnectionPool connectionPool) throws DatabaseException
     {
-        return CupCakePickerMapper.PickBottom(bottom, connectionPool);
+        return CupCakePickerMapper.PickBottom( connectionPool);
     }
 }
