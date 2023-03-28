@@ -41,14 +41,11 @@ public class TopAndBottom extends HttpServlet {
         ShoppingCart cart = new ShoppingCart("");
         String addTopping = request.getParameter("option1");
         String addBottom = request.getParameter("option2");
+        int quantity = Integer.parseInt(request.getParameter("quantity"));
         System.out.println(addTopping + " ------- " + addBottom);
-        try {
-            System.out.println(CupCakePickerFacade.PickBottom(connectionPool));
-        } catch (DatabaseException e) {
-            e.printStackTrace();
-        }
-        cart.addOrder(addTopping);
-        cart.addOrder(addBottom);
+
+        cart.addOrder(addTopping, quantity);
+        cart.addOrder(addBottom, quantity);
         cart.printOrderList();
         request.getRequestDispatcher("WEB-INF/customer.jsp").forward(request,response);
 

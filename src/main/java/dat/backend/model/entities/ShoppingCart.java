@@ -12,10 +12,21 @@ public class ShoppingCart
         this.id = id;
     }
 
-    public ArrayList<String> addOrder(String id)
+    public ArrayList<String> addOrder(String id, int quantity)
     {
-        orders.add(id);
+        int i = 1;
+        while(i <= quantity)
+        {
+            orders.add(id);
+            i++;
+        }
+
         return orders;
+    }
+
+    public int getPrice(String id)
+    {
+        return 0;
     }
 
     public void printOrderList()

@@ -31,6 +31,11 @@
                 </c:forEach>
             </div>
             <br>
+            <div class="container text-center">
+                <label for="quantity" class="form-label"></label>
+                <input type="text" id="quantity" name="quantity" placeholder="quantity">
+            </div>
+            <br>
             <button type="submit" class="btn btn-outline-primary">Add</button>
 
         </form>
@@ -46,8 +51,6 @@
             <p>You are not logged in yet. You can do it here: <a
                     href="../login.jsp">Login</a></p>
         </c:if>
-
-        <h1> ARGHH ${sessionScope.toppingType}</h1>
 
 
 
