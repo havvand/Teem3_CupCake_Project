@@ -40,10 +40,10 @@ public class ShoppingCart
         int price = CupCakesTop.get(top).getPrice() + CupCakesBottom.get(bottom).getPrice();
         String name = CupCakesTop.get(top).getFlavour() + "/" + CupCakesBottom.get(bottom).getFlavour();
 
-        if(quantity > 1)
+        /*if(quantity > 1)
         {
             price *= quantity;
-        }
+        }*/
 
         return new CupCakes(name, CupCakesTop.get(top).getTypeId(), CupCakesBottom.get(bottom).getTypeId(), quantity, price);
     }

@@ -61,6 +61,10 @@
         </form>
         </div>
 
+        <form action="checkOut" method="post">
+            <button type="submit" class="btn btn-outline-primary">Checkout</button>
+        </form>
+
         <p>You should be logged in now</p>
 
         <c:if test="${sessionScope.user != null}">

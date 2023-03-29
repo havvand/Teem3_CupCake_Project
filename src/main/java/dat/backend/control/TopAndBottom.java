@@ -1,5 +1,6 @@
 package dat.backend.control;
 
+import com.mysql.cj.xdevapi.Session;
 import dat.backend.model.config.ApplicationStart;
 import dat.backend.model.entities.*;
 import dat.backend.model.exceptions.DatabaseException;
@@ -17,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Map;
 
 @WebServlet(name = "topAndBottom", urlPatterns = {"/topAndBottom"} )
@@ -33,6 +35,7 @@ public class TopAndBottom extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         response.setContentType("text/html");
+        HttpSession session = request.getSession();
 
         ShoppingCart cart = null;
         try {
@@ -47,14 +50,12 @@ public class TopAndBottom extends HttpServlet {
         String addBottom = request.getParameter("option2");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        cart.addOrder(cart.makeCupCake(addTopping, addBottom, quantity));
+        ArrayList<CupCakes> orders = cart.addOrder(cart.makeCupCake(addTopping, addBottom, quantity));
         cart.printOrderList();
+        session.setAttribute("orders", orders);
 
-
-        //System.out.println(cart.getPrice(addTopping, addBottom, quantity));
         request.getRequestDispatcher("WEB-INF/customer.jsp").forward(request,response);
 
-        // Add functionality to add toppings to customer orders.
     }
 
 }

@@ -25,6 +25,11 @@ public class CupCakes
 
     public int getQuantity() {return quantity;}
 
+    public int getPrice()
+    {
+        return this.price;
+    }
+
     public String toString()
     {
         return this.name + " " + this.price;
