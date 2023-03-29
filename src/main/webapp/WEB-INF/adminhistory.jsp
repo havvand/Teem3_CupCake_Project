@@ -36,13 +36,7 @@
                 <td class="align-middle">${order.price}</td>
                 <td class="align-middle">${order.userId}</td>
                 <td class="align-middle">${order.name}</td>
-                <td class="text-center">
-                    <form action="RemoveOrder" method="post">
-
-                            <input type="submit" value="${order.orderId}">Delete</input>
-
-                    </form>
-                </td>
+                <td class="text-center"></td>
             </tr>
             </tbody>
         </c:forEach>

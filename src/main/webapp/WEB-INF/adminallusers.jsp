@@ -36,6 +36,7 @@
                 <th class="align-middle">${users.userId}</th>
                 <td class="align-middle">${users.username}</td>
                 <td class="align-middle">${users.balance}</td>
+                <td class="align-middle">${users.orderId}</td>
                 <td class="text-center">
 
                     <form action="AddBalance" method="post">
