@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/state-diagram
+
+scale 350 width
+scale 350 height
+
+state NotLoggedIn {
+  [*] --> index.jsp
+  index.jsp --> login.jsp
+  index.jsp --> newuser.jsp
+  login.jsp --> error.jsp : Login servlet
+  newuser.jsp --> error.jsp : NewUser servlet
+
+}
+
+state LoggedIn {
+admin.jsp --> index.jsp : Logout servlet
+customerhomepage.jsp --> index.jsp : Logout servlet
+newuser.jsp --> customerhomepage.jsp : NewUser servlet
+  login.jsp --> customerhomepage.jsp : Login servlet
+  login.jsp --> admin.jsp : Login servlet
+  admin.jsp : Different admin features
+ admin.jsp --> adminallusers.jsp : AllUsers servlet
+   adminallusers.jsp : AddBalance servlet
+  admin.jsp --> adminshowusers.jsp : ShowUsers servlet
+  adminshowusers.jsp : RemoveOrder servlet
+   admin.jsp --> adminhistory.jsp : ShowHistory servlet
+   adminhistory.jsp : RemoveOrder servlet
+   customerhomepage.jsp --> customer.jsp : CustomerHomepage servlet
+   customer.jsp --> checkout.jsp : TopAndBottom servlet
+@enduml

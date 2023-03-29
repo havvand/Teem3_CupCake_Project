@@ -1,35 +1,38 @@
 package dat.backend.model.entities;
 
-public class CupCake {
-    private String flavour;
-    private int price;
-    private int typeId;
+public class CupCake
+{
+    private String name;
+    private int topping, bottom, quantity, price;
 
-    public CupCake(int typeId, String flavour, int price)
+    public CupCake(String name, int topping, int bottom, int quantity, int price)
     {
-        this.flavour = flavour;
-        this.price = price;
-        this.typeId = typeId;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public int getTypeId() {
-        return typeId;
-    }
-
-    public void setPrice(int price) {
+        this.name = name;
+        this.topping = topping;
+        this.bottom = bottom;
+        this.quantity = quantity;
         this.price = price;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+
+    public String getName()
+    {
+        return this.name;
+    }
+    public int getTopping() {return topping;}
+
+    public int getBottom() {return bottom;}
+
+    public int getQuantity() {return quantity;}
+
+    public int getPrice()
+    {
+        return this.price;
     }
 
     public String toString()
     {
-        return this.flavour + " " +  this.price;
+        return this.name + " " + this.price;
     }
+
 }

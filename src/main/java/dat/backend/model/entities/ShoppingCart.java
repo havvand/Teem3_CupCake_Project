@@ -1,39 +1,64 @@
 package dat.backend.model.entities;
 
+import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.exceptions.DatabaseException;
+import dat.backend.model.persistence.ConnectionPool;
+import dat.backend.model.persistence.CupCakePickerFacade;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Map;
 
-public class ShoppingCart {
+public class ShoppingCart
+{
+    ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+    Map<String, Topping> CupCakesTop = CupCakePickerFacade.PickTop(connectionPool);
+    Map<String, Bottom> CupCakesBottom = CupCakePickerFacade.PickBottom(connectionPool);
+    static int price = 0;
+
+
     private String id = "";
-    private static ArrayList<String> orders = new ArrayList<>();
+    private static ArrayList<CupCake> orders = new ArrayList<>();
 
-    public ShoppingCart(String id)
-    {
+    public ShoppingCart(String id) throws SQLException, DatabaseException {
         this.id = id;
     }
 
-    public ArrayList<String> addOrder(String id, int quantity)
+    public ArrayList<CupCake> addOrder(CupCake cupCake)
     {
         int i = 1;
-        while(i <= quantity)
+        while(i <= cupCake.getQuantity())
         {
-            orders.add(id);
+            orders.add(cupCake);
             i++;
         }
 
         return orders;
     }
 
-    public int getPrice(String id)
+    public CupCake makeCupCake(String top, String bottom, int quantity)
     {
-        return 0;
+        int price = CupCakesTop.get(top).getPrice() + CupCakesBottom.get(bottom).getPrice();
+        String name = CupCakesTop.get(top).getFlavour() + "/" + CupCakesBottom.get(bottom).getFlavour();
+
+        /*if(quantity > 1)
+        {
+            price *= quantity;
+        }*/
+
+        return new CupCake(name, CupCakesTop.get(top).getTypeId(), CupCakesBottom.get(bottom).getTypeId(), quantity, price);
     }
 
-    public void printOrderList()
+    public static int getPrice()
     {
-        System.out.println("PRINTET FROM SHOPPINGCART - LIST OF ORDERS");
-        for (String s: orders)
+
+        for (CupCake c: orders)
         {
-            System.out.println(s);
+            price += c.getPrice();
         }
+
+        return price;
     }
+
+
 }

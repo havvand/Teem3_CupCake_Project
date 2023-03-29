@@ -1,6 +1,7 @@
 package dat.backend.model.persistence;
 
 import dat.backend.model.entities.Order;
+import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -57,5 +58,24 @@ public class DataMapper {
         }
         orderHistory.removeIf(o -> o.getOrderId() == orderId);
         return result;
+    }
+
+    static void writeToOrderdata(int price, int userId, ConnectionPool connectionPool) {
+        String sql = "INSERT INTO orderdata (price, userId) values (?,?)";
+        try (Connection connection = connectionPool.getConnection())
+        {
+            try (PreparedStatement ps = connection.prepareStatement(sql))
+            {
+                ps.setInt(1, price);
+                ps.setInt(2, userId);
+                ps.executeUpdate();
+            }
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+        }
+
+
     }
 }

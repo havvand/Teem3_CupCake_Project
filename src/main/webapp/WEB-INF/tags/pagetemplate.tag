@@ -17,11 +17,11 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 </head>
 <body>
-<header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+<header style="background-color: darkviolet">
+    <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
             <a class="navbar-brand" href="index.jsp">
-                <img src="${pageContext.request.contextPath}/images/cphbusiness.png" width="400px;" class="img-fluid"/>
+                <img src="${pageContext.request.contextPath}/images/olsker-logo.png" width="100px;" height="100px" class="img-fluid"/>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
                     aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -39,13 +39,16 @@
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/logout">Log out</a>
                         <a class="nav-item nav-link" href="${pageContext.request.contextPath}/login">${sessionScope.user.username}</a>
                     </c:if>
+                    <c:if test="${sessionScope.user.role.equalsIgnoreCase('admin') }">
+                        <a class="nav-item nav-link" href="${pageContext.request.contextPath}/WEB-INF/adminhistory.jsp">Login</a>
+                    </c:if>
                 </div>
             </div>
         </div>
     </nav>
 </header>
 
-<div id="body" class="container mt-4" style="min-height: 400px;">
+<div id="body" class="container mt-4 text-center" style="min-height: 400px;">
     <h1><jsp:invoke fragment="header"/></h1>
     <jsp:doBody/>
 </div>

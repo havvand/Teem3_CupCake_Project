@@ -11,4 +11,8 @@ public class DataFacade {
     public static boolean deleteOrderHistory(int orderId, ConnectionPool connectionPool) {
         return DataMapper.deleteOrderHistory(orderId, connectionPool);
     }
+
+    public static void writeToOrderData(int price, int userId, ConnectionPool connectionPool) {
+        DataMapper.writeToOrderdata(price, userId,connectionPool);
+    }
 }
