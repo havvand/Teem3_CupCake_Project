@@ -1,6 +1,8 @@
 package dat.backend.model.persistence;
 
+import dat.backend.model.entities.Bottom;
 import dat.backend.model.entities.CupCakes;
+import dat.backend.model.entities.Topping;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 
@@ -13,12 +15,12 @@ import java.util.logging.Logger;
 
 class CupCakePickerMapper
 {
-    static Map<String, CupCakes> cupCakeMapTop = new HashMap<>();
-    static Map<String, CupCakes> cupCakeMapBottom = new HashMap<>();
+    static Map<String, Topping> cupCakeMapTop = new HashMap<>();
+    static Map<String, Bottom> cupCakeMapBottom = new HashMap<>();
 
-    static Map<String, CupCakes> PickTop(ConnectionPool connectionPool) throws SQLException
+    static Map<String, Topping> PickTop(ConnectionPool connectionPool) throws SQLException
     {
-        CupCakes cupCake;
+        Topping topping;
         Logger.getLogger("web").log(Level.INFO, "");
 
         //String sql = "SELECT * FROM toppingtype WHERE flavour = ?";
@@ -29,13 +31,14 @@ class CupCakePickerMapper
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 //ps.setString(1, topping);
                 ResultSet rs = ps.executeQuery();
-                while (rs.next()) {
+                while (rs.next())
+                {
                     String flavour = (rs.getString("flavour"));
                     int price = (rs.getInt("price"));
                     int typeId = (rs.getInt("typeId"));
                     //result = topping;
-                    cupCake = new CupCakes(typeId, flavour, price);
-                    cupCakeMapTop.put(flavour, cupCake);
+                    topping = new Topping(typeId, flavour, price);
+                    cupCakeMapTop.put(flavour, topping);
                 }
             } catch (SQLException ex) {
                 throw new SQLException("No such topping!", ex);
@@ -44,9 +47,9 @@ class CupCakePickerMapper
         }
     }
 
-    static Map<String, CupCakes> PickBottom(ConnectionPool connectionPool) throws DatabaseException
+    static Map<String, Bottom> PickBottom(ConnectionPool connectionPool) throws DatabaseException
     {
-        CupCakes cupCake;
+        Bottom bottom;
         Logger.getLogger("web").log(Level.INFO, "");
 
         String sql = "SELECT bottomtype.typeId, bottomtype.flavour, bottomtype.price FROM bottomtype";
@@ -61,8 +64,8 @@ class CupCakePickerMapper
                     String flavour = (rs.getString("flavour"));
                     int price = (rs.getInt("price"));
                     int typeId = (rs.getInt("typeId"));
-                    cupCake = new CupCakes(typeId, flavour, price);
-                    cupCakeMapBottom.put(flavour, cupCake);
+                    bottom = new Bottom(typeId, flavour, price);
+                    cupCakeMapBottom.put(flavour, bottom);
                 }
             }
         } catch (SQLException ex)

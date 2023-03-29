@@ -1,7 +1,9 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
+import dat.backend.model.entities.Bottom;
 import dat.backend.model.entities.CupCakes;
+import dat.backend.model.entities.Topping;
 import dat.backend.model.entities.User;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.CupCakePickerFacade;
@@ -22,8 +24,8 @@ import java.util.Map;
 public class Login extends HttpServlet
 {
     private ConnectionPool connectionPool;
-    Map<String, CupCakes> CupCakesTop;
-    Map<String, CupCakes> CupCakesBottom;
+    Map<String, Topping> CupCakesTop;
+    Map<String, Bottom> CupCakesBottom;
 
     @Override
     public void init() throws ServletException

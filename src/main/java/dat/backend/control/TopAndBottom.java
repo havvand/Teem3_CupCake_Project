@@ -1,9 +1,7 @@
 package dat.backend.control;
 
 import dat.backend.model.config.ApplicationStart;
-import dat.backend.model.entities.CupCakes;
-import dat.backend.model.entities.ShoppingCart;
-import dat.backend.model.entities.User;
+import dat.backend.model.entities.*;
 import dat.backend.model.exceptions.DatabaseException;
 import dat.backend.model.persistence.CupCakePickerFacade;
 import dat.backend.model.persistence.UserFacade;
@@ -34,18 +32,26 @@ public class TopAndBottom extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        HttpSession session = request.getSession();
         response.setContentType("text/html");
-        //session.setAttribute("user", null); // invalidating user object in session scope
-        //String userTopping = request.getParameter("toppingType");
-        ShoppingCart cart = new ShoppingCart("");
+
+        ShoppingCart cart = null;
+        try {
+            cart = new ShoppingCart("");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (DatabaseException e) {
+            e.printStackTrace();
+        }
+
         String addTopping = request.getParameter("option1");
         String addBottom = request.getParameter("option2");
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
-        cart.addOrder(addTopping, quantity);
-        cart.addOrder(addBottom, quantity);
-        System.out.println(cart.getPrice(addTopping, addBottom, quantity));
+        cart.addOrder(cart.makeCupCake(addTopping, addBottom, quantity));
+        cart.printOrderList();
+
+
+        //System.out.println(cart.getPrice(addTopping, addBottom, quantity));
         request.getRequestDispatcher("WEB-INF/customer.jsp").forward(request,response);
 
         // Add functionality to add toppings to customer orders.

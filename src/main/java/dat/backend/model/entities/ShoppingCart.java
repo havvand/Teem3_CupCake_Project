@@ -11,45 +11,48 @@ import java.util.Map;
 
 public class ShoppingCart
 {
-    ConnectionPool connectionPool;
-    Map<String, CupCakes> CupCakesTop;
-    Map<String, CupCakes> CupCakesBottom;
+    ConnectionPool connectionPool = ApplicationStart.getConnectionPool();
+    Map<String, Topping> CupCakesTop = CupCakePickerFacade.PickTop(connectionPool);
+    Map<String, Bottom> CupCakesBottom = CupCakePickerFacade.PickBottom(connectionPool);
+
 
     private String id = "";
-    private static ArrayList<String> orders = new ArrayList<>();
+    private static ArrayList<CupCakes> orders = new ArrayList<>();
 
-    public ShoppingCart(String id)
-    {
+    public ShoppingCart(String id) throws SQLException, DatabaseException {
         this.id = id;
     }
 
-    public ArrayList<String> addOrder(String id, int quantity)
+    public ArrayList<CupCakes> addOrder(CupCakes cupCake)
     {
         int i = 1;
-        while(i <= quantity)
+        while(i <= cupCake.getQuantity())
         {
-            orders.add(id);
+            orders.add(cupCake);
             i++;
         }
 
         return orders;
     }
 
-    public int getPrice(String idTop, String idBottom, int quantity)
+    public CupCakes makeCupCake(String top, String bottom, int quantity)
     {
-        this.connectionPool = ApplicationStart.getConnectionPool();
-        try {
-            CupCakesTop = CupCakePickerFacade.PickTop(connectionPool);
-            CupCakesBottom = CupCakePickerFacade.PickBottom(connectionPool);
-        } catch (DatabaseException | SQLException e) {
-            e.printStackTrace();
-        }
-        int total = CupCakesTop.get(idTop).getPrice() + CupCakesBottom.get(idBottom).getPrice();
+        int price = CupCakesTop.get(top).getPrice() + CupCakesBottom.get(bottom).getPrice();
+        String name = CupCakesTop.get(top).getFlavour() + "/" + CupCakesBottom.get(bottom).getFlavour();
 
         if(quantity > 1)
         {
-            total *= quantity;
+            price *= quantity;
         }
+
+        return new CupCakes(name, CupCakesTop.get(top).getTypeId(), CupCakesBottom.get(bottom).getTypeId(), quantity, price);
+    }
+
+    public int getPrice(String idTop, String idBottom, int quantity)
+    {
+        int total = CupCakesTop.get(idTop).getPrice() + CupCakesBottom.get(idBottom).getPrice();
+
+
 
         return total;
     }
@@ -57,9 +60,9 @@ public class ShoppingCart
     public void printOrderList()
     {
         System.out.println("PRINTET FROM SHOPPINGCART - LIST OF ORDERS");
-        for (String s: orders)
+        for (CupCakes c: orders)
         {
-            System.out.println(s);
+            System.out.println(c.toString());
         }
     }
 

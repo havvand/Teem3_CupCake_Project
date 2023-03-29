@@ -16,7 +16,7 @@
         <br>
         <div id class="container-fluid justify-content-center">
         <form action="topAndBottom" method="post">
-            <div id="select1" class="product-options row justify-content-center" data-toggle="buttons">
+            <div id="select1" class="product-options row justify-content-center"  data-toggle="buttons">
                 <h1 class="display-5"> Choose topping </h1>
                 <c:forEach var="top" items="${applicationScope.mapOne}">
                     <div class="card text-center m-2" style="width: 14rem; background-color: seashell">
