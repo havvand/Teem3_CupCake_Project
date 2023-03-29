@@ -14,13 +14,6 @@
     <jsp:attribute name="header">
          Welcome to the Customer Homepage
 
-          <form action="customerHomePage" method="post">
-              <label for="bottom">Buy Cupcakes: </label>
-              <input type="text" id="bottom" name="bottomType"/>
-              <input type="submit"  value="Select"/>
-                  ${bottomType}
-          </form>
-
     </jsp:attribute>
 
     <jsp:attribute name="footer">
@@ -29,6 +22,43 @@
 
     <jsp:body>
 
+        <div class="container-fluid" style="min-height: 400px">
+            <div class="row align-items-start" style="min-height: 100px;">
+                <div class="col">
+
+                </div>
+                <div class="col">
+
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+            <div class="row align-items-center" style="min-height: 100px;">
+                <div class="col">
+
+                </div>
+                <div class="col">
+                    <form action="customerHomePage" method="post">
+                        <button class="btn btn-lg btn-primary" type="submit">Buy Cupcakes</button>
+                    </form>
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+            <div class="row align-items-end" style="min-height: 100px;">
+                <div class="col">
+
+                </div>
+                <div class="col">
+
+                </div>
+                <div class="col">
+
+                </div>
+            </div>
+        </div>
         <p>You should be logged in now</p>
 
         <c:if test="${sessionScope.user != null}">

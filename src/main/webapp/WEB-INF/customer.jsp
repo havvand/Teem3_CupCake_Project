@@ -17,13 +17,15 @@
         <div id class="container-fluid justify-content-center">
         <form action="topAndBottom" method="post">
             <div id="select1" class="product-options row justify-content-center" data-toggle="buttons">
-                <h1> Choose topping </h1>
+                <h1 class="display-5"> Choose topping </h1>
                 <c:forEach var="top" items="${applicationScope.mapOne}">
                     <div class="card text-center m-2" style="width: 14rem; background-color: seashell">
                         <div class="card-body">
                             <h5 class="card-title">${top.key}</h5>
-                            <p class="card-text"> <p>Price ${top.value.price} $</p></p>
-                            <label class="btn btn-default"><input type="radio" name="option1" value="${top.key}"><br>${top.key}</label>
+                            <p class="card-text"> <p>Price ${top.value.price} $</p>
+                            <input type="radio" class="btn-check" name="option1" value="${top.key}" id="${top.key}" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="${top.key}">${top.key}</label><br>
+                            <!--<label class="btn btn-default"><input type="radio" name="option1" value="${top.key}"><br>${top.key}</label>-->
                         </div>
                     </div>
 
@@ -38,8 +40,12 @@
                    <div class="card text-center bg-light m-2" style="width: 14rem;">
                         <div class="card-body">
                             <h5 class="card-title">${bottom.key}</h5>
-                            <p class="card-text"> <p>Price ${bottom.value.price} $</p></p>
-                            <label class="btn btn-default"><input type="radio" name="option2" value="${bottom.key}"><br>${bottom.key}</label>
+                            <p class="card-text"> <p>Price ${bottom.value.price} $</p>
+                            <input type="radio" class="btn-check" name="option2" value="${bottom.key}" id="${bottom.key}" autocomplete="off" checked>
+                            <label class="btn btn-outline-primary" for="${bottom.key}">${bottom.key}</label><br>
+
+
+
                         </div>
                     </div>
                 </c:forEach>

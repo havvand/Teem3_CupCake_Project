@@ -45,12 +45,12 @@
 </header>
 
 <div id="body" class="container mt-4 text-center" style="min-height: 400px;">
-    <h1><jsp:invoke fragment="header"/></h1>
+    <h1 class="display-3"><jsp:invoke fragment="header"/></h1>
     <jsp:doBody/>
 </div>
 
 <!-- Footer -->
-<div class="container mt-3">
+<div class="container mt-3 text-center">
     <hr/>
     <div class="row mt-4">
         <div class="col">
