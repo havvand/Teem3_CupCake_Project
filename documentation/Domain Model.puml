@@ -8,11 +8,26 @@ class DataMapper
 class DataFacade
 class UserMapper
 class UserFacade
+class ConnectionPool
+class CupCakePickerMapper
+class CupCakePickerFacade
+class ShoppingCart
+class Bottom
+class Topping
+class Cupcake
 
 DataFacade <|-- DataMapper
 UserFacade <|-- UserMapper
+CupCakePickerFacade <|-- CupCakePickerMapper
 UserMapper <|-- User
+UserMapper <|-- ConnectionPool
 DataMapper <|-- Order
+DataMapper <|-- ConnectionPool
+CupCakePickerMapper <|-- ConnectionPool
+CupCakePickerMapper <|-- Cupcake
+ShoppingCart <|-- Cupcake
+Cupcake <|-- Topping
+Cupcake <|-- Bottom
 
 
 @enduml
