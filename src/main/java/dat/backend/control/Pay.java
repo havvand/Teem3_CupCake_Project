@@ -28,6 +28,7 @@ public class Pay extends HttpServlet {
         int price = (int) request.getSession().getAttribute("price");
         int userId = (int) request.getSession().getAttribute("userId");
         DataFacade.writeToOrderData(price, userId, connectionPool);
+        request.setAttribute("besked", "Tak for din bestilling!");
 
 
         request.getRequestDispatcher("WEB-INF/checkout.jsp").forward(request, response);

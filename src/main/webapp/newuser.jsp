@@ -6,27 +6,31 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-            Create New User
+            Brugeroprettelse
+        <br>
+        <br>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Create New User
+            Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>Create New User</h3>
+        <h4>Her kan du oprette en bruger, hvis du ikke allerede har en.</h4>
+        <br>
+        <br>
 
         <form action="NewUser" method="post">
-            <label for="username">Email here: </label>
+            <label for="username">Email: </label>
             <input type="text" id="username" name="username"/>
-            <label for="name">Name here: </label>
+            <label for="name">Navn: </label>
             <input type="text" id="name" name="name"/>
-            <label for="password">Choose Password: </label>
+            <label for="password">Vælg et kodeord: </label>
             <input type="password" id="password" name="password"/>
-            <label for="password">Confirm Password: </label>
+            <label for="password">Bekræft kodeord: </label>
             <input type="password" id="confirmpassword" name="confirmpassword"/><br><br>
-            <input type="submit"  value="Create User"/>
+            <input type="submit"  value="Opret bruger"/>
         </form>
 
     </jsp:body>

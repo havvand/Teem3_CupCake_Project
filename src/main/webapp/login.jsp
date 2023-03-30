@@ -6,23 +6,27 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-             Login
+             Log ind
+        <br>
+        <br>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-            Login
+            Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
 
-        <h3>You can log in here</h3>
+        <h3>Indtast email adresse og kodeord</h3>
+        <br>
+        <br>
 
         <form action="login" method="post">
-            <label for="username">Username: </label>
+            <label for="username">Email: </label>
             <input type="text" id="username" name="username"/>
             <label for="password">Password: </label>
             <input type="password" id="password" name="password"/>
-            <input type="submit"  value="Log in"/>
+            <input type="submit"  value="Log ind"/>
         </form>
 
     </jsp:body>

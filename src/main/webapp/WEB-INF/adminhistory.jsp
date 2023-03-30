@@ -5,18 +5,22 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the admin area
+         Orderhistorik - her kan admin slette ordrer
+        <br>
+        <br>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Admin area
+        Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
         <form action="RemoveOrder" method="post">
-            <label for="remove">Enter OrderID</label>
+            <label for="remove">Indtast OrderID</label>
             <input type="text" id="remove" name="remove"/>
-            <input type="submit" value="Delete"></input>
+            <input type="submit" value="Slet"></input>
+            <br>
+            <br>
         </form>
 
         <c:forEach  var="order" items="${sessionScope.history}">
@@ -27,7 +31,6 @@
                 <th scope="col">Price</th>
                 <th scope="col" >UserID</th>
                 <th scope="col" >Name</th>
-                <th scope="col" class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -36,7 +39,6 @@
                 <td class="align-middle">${order.price}</td>
                 <td class="align-middle">${order.userId}</td>
                 <td class="align-middle">${order.name}</td>
-                <td class="text-center"></td>
             </tr>
             </tbody>
         </c:forEach>

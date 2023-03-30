@@ -12,12 +12,12 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the Customer Homepage
+         Kassen - færdiggør bestilling ved at betale
 
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Logged in area
+        Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
@@ -30,7 +30,7 @@
                 <div class="col">
                     <c:forEach var="order" items="${sessionScope.orders}">
                         <p>${order.name}</p>
-                        <p>${order.price}</p>
+                        <p>${order.price} Kr</p>
                     </c:forEach>
                 </div>
                 <div class="col">
@@ -42,8 +42,10 @@
 
                 </div>
                 <div class="col">
-                    <h1>Total Price:</h1>
-                <h3>${sessionScope.price}</h3>
+                    <h1>Total Pris:</h1>
+                <h3>${sessionScope.price} Kr</h3>
+                    <br>
+                <h3>${requestScope.besked}</h3>
                 </div>
                 <div class="col">
 
@@ -55,7 +57,7 @@
                 </div>
                 <div class="col">
                     <form action="Pay" method="post">
-                        <button class="btn btn-lg btn-primary" type="submit">Pay</button>
+                        <button class="btn btn-lg btn-primary" type="submit">Betal</button>
                     </form>
                 </div>
                 <div class="col">
@@ -63,19 +65,6 @@
                 </div>
             </div>
         </div>
-
-        <p>You should be logged in now</p>
-
-        <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
-            <h1>${sessionScope.user.username}</h1>
-        </c:if>
-
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="../login.jsp">Login</a></p>
-
-        </c:if>
 
     </jsp:body>
 

@@ -5,20 +5,24 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the admin area
+          Alle Brugere - her kan du se brugere og indsætte penge
+        <br>
+        <br>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Admin area
+       Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
         <form action="AddBalance" method="post">
-            <label for="add">Enter amount</label>
+            <label for="add">Indtast beløb</label>
             <input type="text" id="add" name="add"/>
-            <label for="foruser">Enter UserID</label>
+            <label for="foruser">Indtast bruger-ID</label>
             <input type="text" id="foruser" name="foruser"/>
-            <input type="submit" value="add">Add</input>
+            <input type="submit" value="Indsæt"></input>
+            <br>
+            <br>
         </form>
 
         <c:forEach  var="users" items="${sessionScope.users}">
@@ -28,7 +32,6 @@
                 <th scope="col" id="userId">UserID</th>
                 <th scope="col">User Name</th>
                 <th scope="col" >Balance</th>
-                <th scope="col" class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -36,17 +39,6 @@
                 <th class="align-middle">${users.userId}</th>
                 <td class="align-middle">${users.username}</td>
                 <td class="align-middle">${users.balance}</td>
-                <td class="align-middle">${users.orderId}</td>
-                <td class="text-center">
-
-                    <form action="AddBalance" method="post">
-                        <select name="adder">
-                            <label for="amount">Amount</label>
-                            <input type="text" value="${users.userId}" id="amount" name="amount"/>
-                            <button type="submit" >Add</button>
-                        </select>
-                    </form>
-                </td>
             </tr>
             </tbody>
         </c:forEach>

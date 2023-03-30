@@ -5,26 +5,24 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the frontpage
+         Velkommen til Olsker Cupcakes på nettet!
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Welcome to the frontpage
+        Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
 
-        <p>Startcode for 2nd semester </p>
-
         <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
+            <p>Du er  logget ind som "${sessionScope.user.role}".</p>
         </c:if>
 
         <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
+            <p>Du er ikke logget ind - det kan du gøre her: <a
                     href="login.jsp">Login</a></p>
-            <p>Or create a new user. You can do it here: <a
-                    href="newuser.jsp">Here</a></p>
+            <p>Eller du kan oprette en ny bruger her: <a
+                    href="newuser.jsp">Ny bruger</a></p>
         </c:if>
 
     </jsp:body>

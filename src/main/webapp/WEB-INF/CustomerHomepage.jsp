@@ -12,12 +12,12 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the Customer Homepage
+         Velkommen kære kunde!
 
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Logged in area
+        Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col">
                     <form action="CustomerHomepage" method="post">
-                        <button class="btn btn-lg btn-primary" type="submit">Buy Cupcakes</button>
+                        <button class="btn btn-lg btn-primary" type="submit">Lav en bestilling</button>
                     </form>
                 </div>
                 <div class="col">
@@ -59,14 +59,6 @@
                 </div>
             </div>
         </div>
-
-        <c:if test="${sessionScope.user == null}">
-            <p>You are not logged in yet. You can do it here: <a
-                    href="../login.jsp">Login</a></p>
-            <p>Or create a new user. You can do it here: <a
-                    href="newuser.jsp">Here</a></p>
-
-        </c:if>
 
     </jsp:body>
 

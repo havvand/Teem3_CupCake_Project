@@ -5,27 +5,26 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the admin area
+         Admin
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Admin area
+        Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
 
-        <p>You should be logged in now</p>
-
         <c:if test="${sessionScope.user != null}">
-            <p>You are logged in with the role of "${sessionScope.user.role}".</p>
+            <p>Som "${sessionScope.user.role}" har du følgende valgmuligheder:</p>
+            <br>
             <form action="ShowHistory" method="post">
-                <input type="submit"  value="Show History"/>
+                <input type="submit"  value="Ordrerhistorik"/>
             </form>
             <form action="ShowUsers" method="post">
-            <input type="submit"  value="Show User History"/>
+            <input type="submit"  value="Brugerhistorik"/>
             </form>
             <form action="AllUsers" method="post">
-                <input type="submit"  value="Show All Users"/>
+                <input type="submit"  value="Alle brugere"/>
             </form>
         </c:if>
 

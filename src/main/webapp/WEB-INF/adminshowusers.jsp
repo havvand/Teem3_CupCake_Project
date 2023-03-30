@@ -5,21 +5,16 @@
 
 <t:pagetemplate>
     <jsp:attribute name="header">
-         Welcome to the admin area
+           Brugerhistorik
+        <br>
+        <br>
     </jsp:attribute>
 
     <jsp:attribute name="footer">
-        Admin area
+     Olsker Cupcakes
     </jsp:attribute>
 
     <jsp:body>
-        <form action="AddBalance" method="post">
-            <label for="add">Enter amount</label>
-            <input type="text" id="add" name="add"/>
-            <label for="foruser">Enter UserID</label>
-            <input type="text" id="foruser" name="foruser"/>
-            <input type="submit" value="add">Add</input>
-        </form>
 
         <c:forEach  var="users" items="${sessionScope.users}">
             <table class="table table-striped table-hover">
@@ -29,7 +24,6 @@
                 <th scope="col">User Name</th>
                 <th scope="col" >Balance</th>
                 <th scope="col" >OrderID</th>
-                <th scope="col" class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -38,16 +32,6 @@
                 <td class="align-middle">${users.username}</td>
                 <td class="align-middle">${users.balance}</td>
                 <td class="align-middle">${users.orderId}</td>
-                <td class="text-center">
-
-                    <form action="AddBalance" method="post">
-                        <select name="adder">
-                            <label for="amount">Amount</label>
-                            <input type="text" value="${users.userId}" id="amount" name="amount"/>
-                            <button type="submit" >Add</button>
-                        </select>
-                    </form>
-                </td>
             </tr>
             </tbody>
         </c:forEach>
